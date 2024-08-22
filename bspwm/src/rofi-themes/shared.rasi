@@ -1,0 +1,13 @@
+// Rofi colors for z0mbi3
+
+* {
+    font: "JetBrainsMono NF Bold 9";
+    background: #0d0f18;
+    background-alt: #0d0f18C7;
+    foreground: #a5b6cf;
+    selected: #c296eb;
+    active: #90ceaa;
+    urgent: #dd6777;
+
+    img-background: url("~/.config/bspwm/rices/DarkMode/rofi.webp", width);
+}

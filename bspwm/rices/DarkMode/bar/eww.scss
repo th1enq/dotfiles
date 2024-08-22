@@ -1,0 +1,241 @@
+* {
+  all: unset;
+}
+
+// Variable Color's
+$background: #0d0f18;
+$foreground: #a5b6cf;
+
+$black: #151720;
+$gray: #1c1e27;
+$red: #dd6777;
+$green: #90ceaa;
+$yellow: #ecd3a0;
+$blue: #86aaec;
+$magenta: #c296eb;
+$cyan: #93cee9;
+$white: $foreground;
+$archlogo: #0f94d2;
+
+.tray menu {
+	border-radius: 10px;
+	padding: 5px 0px;
+
+	background-color: rgba(0, 0, 0, 0.8);
+
+	>menuitem {
+		padding: 0px 5px;
+
+		&:disabled label {
+			color: gray;
+		}
+
+		&:hover {
+			background-color: #0e4679;
+		}
+	}
+
+	separator {
+		background-color: #222222;
+		padding-top: 1px;
+
+		&:last-child {
+			padding: unset;
+		}
+	}
+}
+
+// The bar
+.eww_bar {
+  background-color: $background;
+  padding: 0.8rem;
+  border-radius: 35px;
+  margin-left: 10px;
+}
+
+// Launcher
+.launcher_icon {
+  color: $archlogo;
+  font-family: "Material Design Icons Desktop";
+  font-size: 2.2em;
+  padding: 1rem 0 1rem 0;
+}
+
+// Workspaces
+.works {
+  font-family: "Material Design Icons Desktop";
+  padding: 0.5rem 0.7rem 0.5rem 0.7rem;
+  background-color: $black;
+  border-radius: 20px;
+  margin-top: 100px;
+}
+
+.workspace-focused {
+  font-size: 35px;
+  color: #8ea6c4;
+  margin: 0.35rem 0 0.35rem 0;
+}
+
+.workspace-occupied {
+  font-size: 35px;
+  color: #6e8db4;
+  margin: 0.35rem 0 0.35rem 0;
+}
+
+.workspace-empty {
+  font-size: 30px;
+  color: #434c5e;
+  margin: 0.35rem 0 0.35rem 0;
+}
+
+.setting_icon {
+  font-size: 2.2rem;
+  color: $white;
+}
+
+.battery_icon {
+  font-size: 1.4rem;
+  color: $white;
+  margin-bottom: 20px;
+}
+.setting_icon:hover {
+  color: $blue;
+}
+
+
+// .musicbuttons {
+// 	margin : 0px 0px 0px -90px;
+// }
+
+// .playbutton {
+//   background-repeat: no-repeat;
+// 	background-size: 24px;
+// 	// min-height: 24px;
+// 	// min-width: 24px;
+// 	// margin: 0px;
+// }
+
+.music-buttons {
+  background-color: $black;
+  border-radius: 20px;
+  margin-top: 100px;
+}
+
+.trackbutton {
+  font-size: 1.7rem;
+  color: $white;
+}
+
+.trackbutton:hover, .playbutton:hover{
+  color: $blue;
+}
+
+.playbutton {
+  font-size: 2.5rem;
+  color: $white;
+  margin-top: -10px;
+  margin-bottom: -10px;
+}
+
+// // System Tray
+// .tray menu {
+// 	padding: 5px 5px;
+// 	background-color: $background;
+
+// 	>menuitem {
+//     font-family: JetBrainsMono NF;
+//     font-size: 14px;
+// 		padding: 2px 5px;
+//     color: $foreground;
+
+// 		&:disabled label {
+// 			color: $black;
+// 		}
+
+// 		&:hover {
+// 			background-color: $gray;
+// 		}
+// 	}
+
+// 	separator {
+// 		background-color: $foreground;
+// 		padding-top: 1px;
+
+// 		&:last-child {
+// 			padding: unset;
+// 		}
+// 	}
+// }
+
+// // icons info
+// .control {
+//   padding: 0.5rem;
+//   background-color: $black;
+//   border-radius: 5px;
+// }
+
+// .trayicon {
+//   background-repeat: no-repeat;
+//   background-size: 25px;
+//   min-height: 25px;
+//   min-width: 7px;
+//   margin: 0.2rem 0 0.2rem 0;
+// }
+
+// .bar-updates-text {
+//   font-family: "JetBrainsMono NF";
+//   font-size: 14px;
+//   font-weight: Bold;
+//   color: #8ea6c4;
+//   margin: 0.4rem 0 0.2rem 0.2rem;
+// }
+
+// scale trough {
+//   all: unset;
+//   background-color: $background;
+//   border-radius: 5px;
+//   min-height: 80px;
+//   min-width: 10px;
+//   margin: 0.3rem 0 0.3rem 0.1rem;
+// }
+
+// .volbar trough highlight {
+//   background: white;
+//   border-radius: 5px;
+// }
+
+// Clock
+.time {
+  font-family: JetBrainsMono NF;
+  font-weight: bold;
+  font-size: 1.5em;
+  background-color: $black;
+  color: $white;
+  border-radius: 20px;
+  padding: 0.7rem 0 0.5rem 0;
+  margin: 0.5rem 0 0.5rem 0;
+}
+
+// // Powermenu
+// .powermenu {
+//   font-family: Material Design Icons Desktop;
+//   font-size: 1.4em;
+//   font-weight: bold;
+// }
+
+// .powericons {
+//   margin: 0.2rem 0 0.2rem 0;
+// }
+
+// .button-bspres,
+// .button-reb,
+// .button-lock,
+// .button-quit,
+// .button-powermenu,
+// .button-off {
+//   background-repeat: no-repeat;
+//   background-size: 22px;
+//   min-height: 22px;
+//   min-width: 7px;
+//   margin: 0rem 0rem 0.5rem 9px;
+// }

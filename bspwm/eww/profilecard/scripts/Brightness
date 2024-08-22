@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Author : rxyhn
+
+DIR="$HOME/.config/bspwm/assets"
+BRIGHTNESS_STEPS=5
+
+function get_brightness {
+  brightness=$(brightnessctl i | grep -oP '\(\K[^%\)]+')
+	echo "${brightness}"
+}
+
+case $1 in
+  --value) get_brightness;;
+esac

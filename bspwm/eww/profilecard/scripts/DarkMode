@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+#  ██████╗ ██╗     ██╗   ██╗███████╗████████╗ ██████╗  ██████╗ ████████╗██╗  ██╗
+#  ██╔══██╗██║     ██║   ██║██╔════╝╚══██╔══╝██╔═══██╗██╔═══██╗╚══██╔══╝██║  ██║
+#  ██████╔╝██║     ██║   ██║█████╗     ██║   ██║   ██║██║   ██║   ██║   ███████║
+#  ██╔══██╗██║     ██║   ██║██╔══╝     ██║   ██║   ██║██║   ██║   ██║   ██╔══██║
+#  ██████╔╝███████╗╚██████╔╝███████╗   ██║   ╚██████╔╝╚██████╔╝   ██║   ██║  ██║
+#  ╚═════╝ ╚══════╝ ╚═════╝ ╚══════╝   ╚═╝    ╚═════╝  ╚═════╝    ╚═╝   ╚═╝  ╚═╝
+#	Script to detect and control the bluetooth information on my eww widget.
+#	gh0stzk | https://github.com/gh0stzk/dotfiles
+#	12.07.2024 09:51:19
+
+bspwm_dir="$HOME/.config/bspwm"
+read -r current_rice < "$bspwm_dir"/.rice
+
+status() {
+	if [ "${current_rice}" = "DarkMode" ]; then
+		echo "enabled"
+	else
+		echo "disabled"
+	fi
+}
+
+mode() {
+	if [ "${current_rice}" = "DarkMode" ]; then
+		echo "Dark Mode"
+	else
+		echo "Light Mode"
+	fi
+}
+
+toogle() {
+	if [ "${current_rice}" = "DarkMode" ]; then
+		echo "LightMode" > "$bspwm_dir"/.rice
+		"${bspwm_dir}"/rices/LightMode/Theme.sh 
+	else
+		echo "DarkMode" > "$bspwm_dir"/.rice
+		"${bspwm_dir}"/rices/DarkMode/Theme.sh 
+	fi
+}
+
+case "$1" in
+  --status) status ;;
+  --mode) mode;;
+  --toogle) toogle ;;
+esac

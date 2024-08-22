@@ -1,0 +1,8 @@
+function get_brightness {
+  player=$(MediaControl --player)
+	echo "${player}"
+}
+
+case $1 in
+    player) get_player ;;
+esac

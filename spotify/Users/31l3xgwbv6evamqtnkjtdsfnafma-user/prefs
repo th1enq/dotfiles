@@ -1,0 +1,4 @@
+connect.dial_devices="[]"
+audio.play_bitrate_non_metered_migrated=true
+app.browser.zoom-level=-50
+app.player.volume=48836

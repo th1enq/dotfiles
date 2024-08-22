@@ -1,0 +1,59 @@
+#!/bin/bash
+
+# Function to get the current Wi-Fi status
+get() {
+    status=$(nmcli radio wifi)
+    echo "${status}"
+}
+
+# Function to toggle the Wi-Fi status
+update() {
+    # Fetch the current status
+    current_status=$(nmcli radio wifi)
+    
+    # Determine the action based on current status
+    if [ "${current_status}" = "enabled" ]; then
+        nmcli radio wifi off
+    else
+        nmcli radio wifi on
+    fi
+}
+
+is_online() {
+    if ping -c 1 archlinux.org &>/dev/null; then
+        return 0  # Online
+    else
+        return 1  # Offline
+    fi
+}
+
+name_wifi() {
+    if is_online; then
+        SSID=$(nmcli -t -f active,ssid dev wifi show | sed -n '1{s/SSID: //p}')
+    else
+        SSID="No Connection"
+    fi
+    echo "${SSID}"
+}
+
+
+get_icon() {
+    status=$(nmcli radio wifi)
+    if [ "${status}" = "enabled" ]; then
+        if is_online; then
+            echo "󰤨"
+        else
+            echo "󰤩"
+        fi
+    else
+        echo "󰤨"
+    fi
+}
+
+# Main logic to handle arguments
+case $1 in
+    status) get ;;
+    update) update ;;
+    name) name_wifi;;
+    icon) get_icon;;
+esac

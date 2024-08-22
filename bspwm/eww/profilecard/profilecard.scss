@@ -1,0 +1,314 @@
+.launcher_box {
+  background-color: #101012;
+  min-width: 30rem;
+  border-radius: 30px;
+  padding: 30px 50px 45px 30px;
+}
+
+.min {
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 1.1rem;
+  padding: 0 0.9rem;
+  color: $red;
+}
+
+.min:hover {
+  color: $magenta;
+}
+
+.usercard {
+  border-radius: 0.5rem;
+}
+
+.face {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  min-height: 160px;
+  min-width: 160px;
+  //border: .2rem solid #171717;
+  border-radius: 100%;
+  box-shadow: 0 0 7px 1px rgba(#fff, 0.5);
+  margin: 10px -8px 10px 10px;
+}
+
+.user-host {
+  color: #CCD0D9;
+  font-family: Cartograph CF;
+  font-weight: Normal;
+  font-size: 1.1rem;
+  margin-left: 30px;
+}
+
+.host {
+  color: #6a6c72;
+  font-family: Cartograph CF;
+  font-size: 28px;
+  margin-left: 30px;
+  margin-top: 12px;
+}
+
+.stats-box {
+  background-color: #18181A;
+  padding: 0px 10px;
+  border-radius: 20px;
+  margin-top: 50px;
+  padding-bottom: 30px;
+  slider {
+    all: unset;
+    color: $fg;
+  }
+}
+
+.vol-slider {
+  margin-top: 10px;
+  .vol-label {
+    font-size: 70px;
+    margin-left: 12px;
+    color: #CCD0D9;
+  }
+  .vol-value {
+    font-family: Cartograph CF;
+    font-size: 30px;
+    margin-left: 30px;
+    color: #CCD0D9;
+  }
+  & scale trough {
+    all: unset;
+    background-color: #343434;
+    border-radius: 50px;
+    min-height: 20px;
+    min-width: 600px;
+    // margin-top: -3px;
+    margin-left: 30px;
+    & highlight {
+      all: unset;
+      background-color: #8AB4F8;
+      color: #000000;
+      border-radius: 10px;
+    }
+  }
+}
+
+.br-slider {
+  margin-top: 10px;
+  .br-label {
+    font-size: 70px;
+    margin-left: 12px;
+    color: #CCD0D9;
+  }
+  .br-value {
+    font-family: Cartograph CF;
+    font-size: 30px;
+    margin-left: 30px;
+    color: #CCD0D9;
+  }
+  & scale trough {
+    all: unset;
+    background-color: #343434;
+    border-radius: 50px;
+    min-height: 20px;
+    min-width: 600px;
+    // margin-top: -3px;
+    margin-left: 30px;
+    & highlight {
+      all: unset;
+      background-color: #8AB4F8;
+      color: #000000;
+      border-radius: 10px;
+    }
+  }
+}
+
+.micro-slider {
+  margin-top: 10px;
+  .micro-label {
+    font-size: 65px;
+    margin-left: 12px;
+    color: #CCD0D9;
+  }
+  .micro-value {
+    font-family: Cartograph CF;
+    font-size: 30px;
+    margin-left: 30px;
+    color: #CCD0D9;
+  }
+  & scale trough {
+    all: unset;
+    background-color: #343434;
+    border-radius: 50px;
+    min-height: 20px;
+    min-width: 600px;
+    // margin-top: -3px;
+    margin-left: 30px;
+    & highlight {
+      all: unset;
+      background-color: #8AB4F8;
+      color: #000000;
+      border-radius: 10px;
+    }
+  }
+}
+
+.music-player {
+  background-color: #18181A;
+  padding: 0px 10px;
+  border-radius: 20px;
+  margin-top: 50px;
+}
+
+.player-art {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  min-height: 150px;
+  min-width: 150px;
+  //border: .2rem solid #171717;
+  border-radius: 20%;
+  margin-left: 10px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.player-title {
+  color: $fg;
+  font-family: Cartograph CF;
+  font-size: 1.1rem;
+  margin-left: 20px;
+  margin-top: 60px;
+}
+
+.player-artist {
+  font-family: Cartograph CF;
+  font-size: 0.9rem;
+  margin-left: 20px;
+  margin-top: 20px;  
+}
+
+.player-controls {
+  padding: 0rem 0.7rem 0rem 1rem;
+  border-radius: 1rem;
+  margin-right: 2rem;
+
+  .player-toggle {
+    font-size: 1.6rem;
+    color: #CCD0D9;
+  }
+
+  .player-previous,
+  .player-next {
+    font-size: 1.6rem;
+    color: #CCD0D9;
+  }
+
+  button {
+    &:hover {
+      color: $magenta;
+    }
+  }
+}
+
+.wifi_box_disabled, .bluetooth_box_disabled, .mode_box_disabled, .bluelight_box_disabled {
+  margin-top: 30px;
+  margin-left: 10px;
+  min-height: 100px;
+  min-width: 100px;
+  background-color: #343434;
+  border-radius: 30px;
+}
+
+.wifi_box_enabled, .bluetooth_box_enabled, .mode_box_enabled, .bluelight_box_enabled {
+  margin-top: 30px;
+  margin-left: 10px;
+  min-height: 100px;
+  min-width: 100px;
+  background-color: #8AB4F8;
+  border-radius: 40px;
+}
+
+.wifi_icon_enabled, .bluetooth_icon_enabled, .mode_icon_enabled, .bluelight_icon_enabled {
+  font-family: Material Design Icons Desktop;
+  font-size: 2rem;
+  color: #171717;
+}
+
+.wifi_icon_disabled, .bluetooth_icon_disabled, .mode_icon_disabled, .bluelight_icon_disabled {
+  font-family: Material Design Icons Desktop;
+  font-size: 2rem;
+  color: #CCD0D9;
+}
+
+.weatherbox {
+  background-color: #18181A;
+  border-radius: 0.5rem;
+  padding: 0.8rem;
+  margin-top: 40px;
+}
+
+.weathericon {
+  margin-top: 40px;
+  padding: 0 0.8rem;
+  border-radius: 0.5rem;
+  margin-left: 0.6rem;
+  background-color: #18181A;
+  font-size: 1.5rem;
+  font-family: "Font Awesome 6 Free Solid";
+}
+
+.weatherdesc {
+  font-size: 1.75rem;
+  font-family: "Inconsolata SemiCondensed Medium";
+  font-weight: Bold;
+}
+
+.weathertemp {
+  font-family: "Iosevka Nerd Font";
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: $fg;
+}
+
+.weathercity {
+  font-size: 0.9rem;
+  margin-top: 0.2rem;
+  color: $fg;
+  font-family: Inconsolata SemiCondensed Medium;
+  font-weight: Bold;
+}
+
+.progress {
+  margin-top: 40px;
+  background-color: #18181A;
+  padding: 0.7rem 0.7rem;
+  border-radius: 1rem;
+
+  circular-progress {
+    background-color: $black;
+
+    &.ram {
+      color: $blue;
+    }
+
+    &.cpu {
+      color: $green;
+    }
+
+    &.disk {
+      color: $magenta;
+    }
+  }
+
+  .icon {
+    font-family: "Font Awesome 6 Free Solid";
+    font-size: 1rem;
+    padding: 1.1rem;
+  }
+}
+
+.footer_box {
+  margin-top: 50px;
+}
+
+.day  {
+  font-size: 30px;
+}

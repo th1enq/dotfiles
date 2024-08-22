@@ -1,0 +1,379 @@
+;; Vars ;;
+
+;; Fetch
+(defpoll os :interval "24h" "../eww/profilecard/scripts/fetch os")
+(defpoll wm :interval "24h" "../eww/profilecard/scripts/fetch wm")
+
+;; Profile
+(defvar IMAGEP "../assets/profile.png")
+(defpoll username :interval "24h" "whoami")
+(defpoll hostname :interval "24h" "cat /etc/hostname")
+(defpoll uptime :interval "30s" "uptime -p | sed -E -e 's/hour(s)?/hrs/g' -e 's/minute(s)?/min/g'")
+
+;; Volume vars
+(defpoll volume_icon :interval "1s" "scripts/Volume --icon")
+(defpoll volume_value :interval "1s" "pamixer --get-volume-human | sed 's/%//'")
+(defpoll microphone_value :interval "1s" "amixer get Capture | awk -F '[][%]' '{print $2}' | sed -n '5p'")
+
+
+;; Brightness
+(defpoll brightness_value :interval "1s" "brightnessctl i | grep -oP '\\(\\K[^%\\)]+'")
+
+;; Weather
+(defpoll weathericon :interval "15m" "Weather icon")
+(defpoll weathercity :interval "15m" "Weather city")
+(defpoll weathertemp :interval "15m" "Weather current_temp")
+(defpoll weatherdesc :interval "15m" "Weather weather_desc")
+(defpoll weatherhex :interval "15m" "Weather hex")
+
+;; Battery
+;;(defpoll battery :interval "3s" "../eww/profilecard/scripts/Battery get_battery")
+;;(defpoll battery_icon :interval "3s" "../eww/profilecard/scripts/Battery get_icon")
+;;(defpoll battery_status :interval "3s" "../eww/profilecard/scripts/Battery get_status")
+
+(defpoll music_player		:interval "1s" "MediaControl --player")
+(defpoll music_art			:interval "3s" "MediaControl --cover")
+(defpoll music_title 		:interval "1s" "MediaControl --title")
+(defpoll music_artist 		:interval "1s" "MediaControl --artist")
+(defpoll music_status 		:interval "1s" "MediaControl --status")
+(defpoll music_position 	:interval "1s" "MediaControl --position")
+(defpoll music_positions	:interval "1s" "MediaControl --positions")
+(defpoll music_length 		:interval "1s" "MediaControl --length")
+(defpoll music_lengths 		:interval "1s" "MediaControl --lengths")
+
+(defpoll status :interval "1s" "../eww/profilecard/scripts/Network status")
+(defpoll wifi_icon :interval "1s" "../eww/profilecard/scripts/Network icon")
+(defpoll name_wifi :interval "5s" "../eww/profilecard/scripts/Network name")
+
+(defpoll blue_name :interval "3s" "../eww/profilecard/scripts/Bluetooth --name")
+(defpoll blue_status :interval "1s" "../eww/profilecard/scripts/Bluetooth --status")
+
+(defpoll mode :interval "1s" "../eww/profilecard/scripts/DarkMode --mode")
+(defpoll darkMode_status :interval "1s" "../eww/profilecard/scripts/DarkMode --status")
+
+(defpoll blue_light_status :interval "1s" "../eww/profilecard/scripts/Redshift status")
+(defpoll number_updates :interval "15m" `Updates --get-updates`)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Widegets ;;
+
+
+(defwidget launcher []
+     (box :class "launcher_box"
+          :orientation "v"
+          :space-evenly "false"
+          (pfp)
+          (stats)
+          (music)
+		  (weather)
+		  (footer)
+  ))
+
+(defwidget stats []
+  (box :class "stats-box"
+       :orientation "v"
+       :space-evenly "false"
+       (box :class "br-slider"
+         :orientation "h"
+         :space-evenly "false"
+          (box :class "br-label"
+               "󰃟")
+          (scale :value brightness_value
+               :onchange "brightnessctl s {}%"
+               :min 0
+               :max 101
+          )
+          (box :class "br-value"
+               "${brightness_value}%")
+          )
+    (box :orientation "h"
+         :space-evenly "false"
+         :class "vol-slider"
+      (box :class "vol-label"
+           ""
+      )
+      (scale
+        :class "volbar" 
+        :value {volume_value ?: "50"}
+			  :onchange "pamixer --set-volume {}"
+			  :orientation "h"
+			  :max 101
+			  :min 0)
+     (box :class "vol-value"
+     "${volume_value}%")
+    )
+	(box :orientation "h"
+         :space-evenly "false"
+         :class "micro-slider"
+      (box :class "micro-label"
+           "󰍬"
+      )
+      (scale
+        :class "microbar" 
+        :value {microphone_value ?: "11"}
+			  :onchange "amixer set Capture {}%"
+			  :orientation "h"
+			  :max 101
+			  :min 0)
+     (box :class "micro-value"
+     "${microphone_value}%")
+    )
+	(box
+		:orientation "h"
+		:spacing 10
+		(box :class "wifi_box_${status}"
+				:halign "start"
+				(eventbox
+					:cursor "pointer"
+						(button 
+							:class "wifi_icon_${status}" 
+							:onclick "../eww/profilecard/scripts/Network update" 
+							:tooltip "${name_wifi}"
+							:onrightclick "OpenApps --netmanager"
+							wifi_icon
+						)
+				)
+		)
+		(box :class "bluetooth_box_${blue_status}"
+		  	:halign "start"
+			(eventbox
+				:cursor "pointer"
+                    (button 
+                         :class "bluetooth_icon_${blue_status}"  
+						 :tooltip "${blue_name}"
+						 :onrightclick "OpenApps --bluetooth"
+                         :onclick "../eww/profilecard/scripts/Bluetooth --toggle"
+                         ""
+                    )
+			)
+		)
+		(box :class "mode_box_${darkMode_status}"
+		  	:halign "start"
+			(eventbox
+				:cursor "pointer"
+                    (button 
+                         :class "mode_icon_${darkMode_status}" 
+						 :tooltip "${mode}"
+                         :onclick "../eww/profilecard/scripts/DarkMode --toogle" 
+                         "󰃛"
+                    )
+			)
+		)
+		(box :class "bluelight_box_${blue_light_status}"
+		  	:halign "start"
+			(eventbox
+				:cursor "pointer"
+                    (button 
+                         :class "bluelight_icon_${blue_light_status}" 
+                         :onclick "../eww/profilecard/scripts/Redshift toggle" 
+                         ""
+                    )
+			)
+		)
+		(box :class "wifi_box_enabled"
+		  	:halign "start"
+			(eventbox
+				:cursor "pointer"
+                    (button 
+                         :class "wifi_icon_enabled" 
+						 :tooltip "${number_updates} available"
+                         :onclick "../eww/profilecard/scripts/Update.sh &" 
+                         "󰚰"
+                    )
+			)
+		)
+	)	
+  )
+)
+
+(defwidget pfp []
+	(box :orientation "h"
+		 :space-evenly "false"
+		 :class "usercard"
+		 (box :space-evenly "false"
+			  :hexpand true
+			  :width 320
+			  :orientation "h"
+			  :spacing "15"
+			  (box :style "background-image: url('${IMAGEP}');"
+				   :class "face"
+				   :halign "center")
+			  (box :orientation "v"
+				   :space-evenly "false"
+				   :hexpand true
+				   :valign "center"
+				   (box :class "user-host"
+						:halign "start"
+						(label :text username))
+			       (box :class "host"
+						:halign "start"
+						(label :text "@${hostname}"))
+        )
+		)
+	)
+)	  
+
+(defwidget music []
+	(box :orientation "h"
+		 :space-evenly "false"
+		 :class "music-player"
+		 (box :space-evenly "false"
+			  :hexpand true
+			  :width 320
+			  :orientation "h"
+			  :spacing "15"
+			  (box :style "background-image: url('${music_art}');"
+				   :class "player-art"
+				   :halign "center")
+               (box :orientation "v"
+				   :space-evenly "false"
+				   :hexpand true
+				   :valign "start"
+                    (box :class "player-title"
+                         :halign "start"
+                         (label :text "${music-title}"
+                         :limit-width 30
+					:wrap true
+					:xalign 0
+                         :limit-width 30))
+                    (box :class "player-artist"
+                         :halign "start"
+                         (label :text "${music_artist}"))
+               )
+               (box 
+			:class "player-controls" 
+			:orientation "h"
+			:valign "center"
+			:space-evenly false
+			:spacing 35
+			(eventbox
+				:cursor "pointer"
+				(button 
+					:class "player-previous" 
+					:onclick "MediaControl --previous" 
+					"󰒮"
+				)
+			)
+			(eventbox
+				:cursor "pointer"
+				(button 
+					:class "player-toggle" 
+					:onclick "MediaControl --toggle" 
+					{music_status == "Playing" ? "󰏤" : music_status == "Paused" ? "󰐊" : "󰓛"}
+				)
+			)
+			(eventbox
+				:cursor "pointer"
+				(button 
+					:class "player-next" 
+					:onclick "MediaControl --next" 
+					"󰒭"
+				)
+			)
+		)	
+           )
+     )
+)  
+
+
+(defwidget footer []
+	(box :orientation "h"
+		 :space-evenly "false"
+		 :class "footer_box"
+		 (box :space-evenly "false"
+			  :hexpand true
+			  :width 320
+			  :orientation "h"
+			  :spacing "15"
+			  (box :orientation "v"
+				   :space-evenly "false"
+				   :hexpand true
+				   :valign "center"
+				   (box :class "user-host"
+						:halign "start"
+						(label :text completeday))        )
+		)
+	)
+)	 
+
+
+(defwidget weather[] 
+  (box :orientation "h" :class "weatherboxfull" :space-evenly false
+	(box :orientation "v" :class "weatherbox" :hexpand true :space-evenly false
+      (box :orientation "h" :class "weathertop" :space-evenly false
+        (box :class "weatherdesc" :style "color: ${weatherhex ?: '#adadff'};" :halign "start" :hexpand true weatherdesc)
+        (box :class "weathertemp" :halign "end" "${weathertemp}°C")
+      )
+      (box :orientation "v" :class "weatherbot" :space-evenly false
+        (box :class "weathercity" :halign "start" :hexpand true
+			 (label :limit-width 22 :text weathercity))
+      )
+    )
+      (box :class "weathericon" :style "color: ${weatherhex ?: '#adadff'};" :halign "center" weathericon)
+  )
+)
+
+
+(defwidget system_progress [data icon css tip] 
+  (box  :class "progress" 
+    (circular-progress
+      :class css
+      :value data
+      :thickness 6
+      :tooltip tip
+      (overlay
+        :valign "center"
+        (label 
+          :class "icon" 
+          :text icon
+        )
+      )
+    )
+  )
+)
+
+(defwidget cpu [] 
+  (system_progress
+    :css "cpu"
+    :tip "CPU ${round(EWW_CPU.avg,0)}%"
+    :data {round(EWW_CPU.avg, 0)} 
+    :icon ""
+  )
+)
+
+(defwidget ram [] 
+  (system_progress
+    :css "ram"
+    :tip "RAM ${round(EWW_RAM.used_mem / 1048576, 2)}MB"
+    :data {round(EWW_RAM.used_mem_perc, 0)}
+    :icon ""
+  )
+)
+
+(defwidget disk [] 
+  (system_progress
+    :css "disk"
+    :tip "SSD ${round(EWW_DISK["/"].used_perc, 2)}%"
+    :data {round(EWW_DISK["/"].used_perc, 0)}
+    :icon ""
+  )
+)
+
+
+(defwidget system []
+  (box 
+    :class "system"
+    :spacing 8
+    (cpu)
+    (ram)
+    (disk)
+  )
+)
+
+
+;; Windows ;;
+
+(defwindow launchermenu
+    :geometry (geometry :x "160px" :y "330" :anchor "left center")
+    :wm-ignore false
+    (launcher))
