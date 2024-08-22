@@ -15,14 +15,14 @@ Here is some details about my setup:
 > ⚠️⚠️⚠️ This dotfiles are configured at **3840x2160** resolution with **200** DPI and **1** monitor.
 > Some stuff might break on lower or higher resolutions, but still work!! ⚠️⚠️⚠️
 ### Previews
-<br>  
-  <details close>
-      <summary><samp>Show previews</samp></summary>
-<br>
-Desktop Screen
     
 <br>
     <img src="assets/Shot-2024-08-22-134255.png">
+<br>
+
+<br>  
+  <details close>
+      <summary><samp>Show more previews</samp></summary>
 <br>
 Applications Menu :
 
