@@ -5,7 +5,7 @@ Here is some details about my setup:
 |       WM      |         bspwm         |
 |:-------------:|-----------------------|
 |       OS      |        Arch Linux     |
-|    Terminal   |   Kitty / Alaccritty  |
+|    Terminal   |   Kitty / Alacritty  |
 |      Bar      |          Eww          |
 |   Compositor  |         picom         |
 | Launcher Apps |          rofi         |
