@@ -1,0 +1,48 @@
+{ inputs, pkgs, ... }:
+
+{
+  home.packages = with pkgs; [
+    discord
+    wireshark
+    yazi
+    wrk
+    bubblewrap
+    codex
+    vscode
+    swaybg
+    wl-clipboard
+    fzf
+    eza
+    bat
+    github-cli
+    ghostty
+    nixfmt-rfc-style
+    nixd
+    banana-cursor
+    playerctl
+    slurp
+    grim
+    libnotify
+    mako
+    mysql-workbench
+    sysprof
+    lazydocker
+    ripgrep
+    zathura
+    autotiling
+    direnv
+    nix-direnv
+    usbutils
+    kitty
+    cursor-cli
+    btop
+    wrk
+    ncmpcpp
+    mpd
+    obs-studio
+    marksman
+    jetbrains.datagrip
+    vmware-workstation
+    inputs.zennotes.packages.${pkgs.system}.zennotes-desktop
+  ];
+}
